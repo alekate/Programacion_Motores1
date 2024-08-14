@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    [Header("MovementKeys")]
+    [SerializeField] KeyCode keyUp = KeyCode.W;
+    [SerializeField] KeyCode keyDown = KeyCode.S;
+    [SerializeField] KeyCode keyLeft = KeyCode.A;
+    [SerializeField] KeyCode keyRight = KeyCode.D;
 
+    [Header("RotationKeys")]
+    [SerializeField] KeyCode keyRotateRight = KeyCode.E;
+    [SerializeField] KeyCode keyRotateLeft = KeyCode.Q;
+
+    [Header("ColorKey")]
+    [SerializeField] KeyCode keyColor = KeyCode.R;
+
+    [Header("Stats and Misc")]
+    [SerializeField] SpriteRenderer spriteRenderer;
     public float speed = 0.01f;
-    public float speedRotation = 0.01f;
-    public KeyCode keyUp = KeyCode.W;
-    public KeyCode keyDown = KeyCode.S;
-    public KeyCode keyLeft = KeyCode.A;
-    public KeyCode keyRight = KeyCode.D;
-
-    public KeyCode keyRotateRight = KeyCode.E;
-    public KeyCode keyRotateLeft = KeyCode.Q;
-
-    public KeyCode keyColor = KeyCode.R;
 
     // Start is called before the first frame update
     void Start() 
@@ -71,5 +74,13 @@ public class Movement : MonoBehaviour
     void ChangeColor()
     {
         spriteRenderer.material.color = Random.ColorHSV();
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        if (newSpeed < 1.5f)
+        {
+            speed = newSpeed;
+        }
     }
 }
