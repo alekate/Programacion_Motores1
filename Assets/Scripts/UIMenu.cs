@@ -9,7 +9,7 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button creditsButton;
-    [SerializeField] private Button exitButton;
+    [SerializeField] private Button quitButton;
 
     [Header("Players")]
     [SerializeField] private Movement player1;
@@ -20,15 +20,18 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private Slider speedSlider2;
 
     public GameObject panelPause;
+    public GameObject panelSettings;
+    public GameObject panelCredits;
 
     void Awake()
     {
         playButton.onClick.AddListener(OnPlayButtonClicker);
-        playButton.onClick.AddListener(OnSettingsButtonClicked);
-        playButton.onClick.AddListener(OnCreditsButtonClicked);
-        playButton.onClick.AddListener(OnQuitButtonClicked);
+        settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        creditsButton.onClick.AddListener(OnCreditsButtonClicked);
+        quitButton.onClick.AddListener(OnQuitButtonClicked);
 
         speedSlider1.onValueChanged.AddListener(OnSpeedSlider1Changed);
+        speedSlider2.onValueChanged.AddListener(OnSpeedSlider2Changed);
     }
 
     public void OnPlayButtonClicker()
@@ -42,6 +45,8 @@ public class UIMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !panelPause.activeSelf)
         {
             panelPause.SetActive(true);
+            panelSettings.SetActive(false);
+            panelCredits.SetActive(false);
         }
     }
 
@@ -58,11 +63,14 @@ public class UIMenu : MonoBehaviour
     private void OnSettingsButtonClicked()
     {
         panelPause.SetActive(false);
+        panelSettings.SetActive(true);
+
     }
 
     private void OnCreditsButtonClicked()
     {
         panelPause.SetActive(false);
+        panelCredits.SetActive(true);
     }
 
     private void OnQuitButtonClicked()
@@ -74,6 +82,12 @@ public class UIMenu : MonoBehaviour
     {
         player1.SetSpeed(speed);
     }
+
+    private void OnSpeedSlider2Changed(float speed)
+    {
+        player2.SetSpeed(speed);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
