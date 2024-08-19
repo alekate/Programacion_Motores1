@@ -19,8 +19,13 @@ public class Movement : MonoBehaviour
 
     [Header("Stats and Misc")]
     [SerializeField] SpriteRenderer spriteRenderer;
+    
     public float speed = 0.01f;
 
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     // Start is called before the first frame update
     void Start() 
     {
@@ -30,27 +35,27 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+                
         Vector3 pos = transform.position;
       
         if (Input.GetKey(keyUp))
         {
-            pos.y += speed;
+            pos.y += speed * Time.deltaTime;
         }
 
         if (Input.GetKey(keyDown))
         {
-            pos.y -= speed;
+            pos.y -= speed * Time.deltaTime;
         }
 
         if (Input.GetKey(keyLeft))
         {
-            pos.x -= speed;
+            pos.x -= speed * Time.deltaTime;
         }
 
         if (Input.GetKey(keyRight))
         {
-            pos.x += speed;
+            pos.x += speed * Time.deltaTime;
         }
 
         transform.position = pos;
@@ -78,9 +83,11 @@ public class Movement : MonoBehaviour
 
     public void SetSpeed(float newSpeed)
     {
+        speed = newSpeed;
         if (newSpeed < 1.5f)
         {
             speed = newSpeed;
         }
     }
+
 }

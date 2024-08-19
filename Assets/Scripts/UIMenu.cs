@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIMenu : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class UIMenu : MonoBehaviour
     public GameObject panelSettings;
     public GameObject panelCredits;
 
+    [SerializeField] private TextMeshProUGUI textSpeedP1;
+    [SerializeField] private TextMeshProUGUI textSpeedP2;
+
     void Awake()
     {
         playButton.onClick.AddListener(OnPlayButtonClicker);
@@ -32,6 +36,7 @@ public class UIMenu : MonoBehaviour
 
         speedSlider1.onValueChanged.AddListener(OnSpeedSlider1Changed);
         speedSlider2.onValueChanged.AddListener(OnSpeedSlider2Changed);
+        
     }
 
     public void OnPlayButtonClicker()
@@ -48,6 +53,7 @@ public class UIMenu : MonoBehaviour
             panelSettings.SetActive(false);
             panelCredits.SetActive(false);
         }
+
     }
 
     private void OnDestroy()
@@ -80,12 +86,21 @@ public class UIMenu : MonoBehaviour
 
     private void OnSpeedSlider1Changed(float speed)
     {
+        textSpeedP1.text = speed.ToString();
         player1.SetSpeed(speed);
+
     }
 
     private void OnSpeedSlider2Changed(float speed)
     {
+        textSpeedP2.text = speed.ToString();
         player2.SetSpeed(speed);
+        
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     // Start is called before the first frame update
