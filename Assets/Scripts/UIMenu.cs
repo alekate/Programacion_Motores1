@@ -20,10 +20,12 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private Slider speedSlider1;
     [SerializeField] private Slider speedSlider2;
 
+    [Header("Panels")]
     public GameObject panelPause;
     public GameObject panelSettings;
     public GameObject panelCredits;
 
+    [Header("Texts")]
     [SerializeField] private TextMeshProUGUI textSpeedP1;
     [SerializeField] private TextMeshProUGUI textSpeedP2;
 
