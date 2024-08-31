@@ -5,12 +5,14 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject obstaclePreFab;
+    private GameObject prefab;
+    [SerializeField] private GameObject obstaclePreFab2;
+    private GameObject prefab2;
     [SerializeField] private float timeToSpawn;
     [SerializeField] private float timeToDespawn;
 
     private float totalTime;
     private bool spawned = false;
-    private GameObject spawnedObstacle;
 
     void Start()
     {
@@ -23,20 +25,30 @@ public class SpawnManager : MonoBehaviour
 
         if (totalTime > timeToSpawn && spawned == false)
         {
-            Instantiate(obstaclePreFab, new Vector2(0, 0), Quaternion.identity);
+            // Generar posiciones aleatorias
+            float randomPosX1 = Random.Range(-3f, 3f);
+           // float randomPosY1 = Random.Range(-3f, 3f);
+
+           // float randomPosX2 = Random.Range(-3f, 3f);
+            float randomPosY2 = Random.Range(-3f, 3f);
+
+            // Instanciar los objetos en posiciones aleatorias
+            prefab = Instantiate(obstaclePreFab, new Vector2(randomPosX1 , 0 ), Quaternion.identity);
+            prefab2 = Instantiate(obstaclePreFab2, new Vector2(0 , randomPosY2), Quaternion.identity);
+
             spawned = true;
             totalTime = 0;
-            spawnedObstacle= obstaclePreFab;
         }
 
         if (totalTime > timeToDespawn && spawned == true)
         {
-            spawnedObstacle = obstaclePreFab;
-            Destroy(spawnedObstacle); 
+            Destroy(prefab); 
+            Destroy(prefab2);
             spawned = false;
             totalTime = 0;
         }
 
-        Debug.Log(totalTime);
+        // Debug.Log(totalTime);
     }
 }
+

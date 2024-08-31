@@ -2364,6 +2364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePreFab: {fileID: 372975213644523937, guid: 1468f55963c7d4442834113343f21969, type: 3}
+  obstaclePreFab2: {fileID: 372975213644523937, guid: 1468f55963c7d4442834113343f21969, type: 3}
   timeToSpawn: 5
   timeToDespawn: 5
 --- !u!1 &1045804170
