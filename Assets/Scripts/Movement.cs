@@ -10,52 +10,46 @@ public class Movement : MonoBehaviour
     [SerializeField] KeyCode keyLeft = KeyCode.A;
     [SerializeField] KeyCode keyRight = KeyCode.D;
 
-    public float speed = 0.01f;
+    public float moveSpeed = 5f;
 
+    public Rigidbody2D rb2d;
 
     // Start is called before the first frame update
-    void Start() 
+    void Start()
     {
-
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-                
-        Vector3 pos = transform.position;
-      
+        Vector2 movement = Vector2.zero;
+
         if (Input.GetKey(keyUp))
         {
-            pos.y += speed * Time.deltaTime;
+            movement.y = moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(keyDown))
         {
-            pos.y -= speed * Time.deltaTime;
+            movement.y = -moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(keyLeft))
         {
-            pos.x -= speed * Time.deltaTime;
+            movement.x = -moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(keyRight))
         {
-            pos.x += speed * Time.deltaTime;
+            movement.x = moveSpeed * Time.deltaTime;
         }
 
-        transform.position = pos;
-
+        rb2d.MovePosition(rb2d.position + movement);
     }
 
     public void SetSpeed(float newSpeed)
     {
-        speed = newSpeed;
-        if (newSpeed < 1.5f)
-        {
-            speed = newSpeed;
-        }
+        moveSpeed = newSpeed;
     }
-
 }

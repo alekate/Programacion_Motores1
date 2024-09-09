@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColorChanging : MonoBehaviour
 {
-    [Header("ColorKey")]
-    [SerializeField] KeyCode keyColor = KeyCode.R;
 
-    [Header("Stats and Misc")]
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [Header("Sprite Renderer")]
+    [SerializeField] SpriteRenderer player1SpriteRenderer;
+    [SerializeField] SpriteRenderer player2SpriteRenderer;
 
-    void Awake()
+    [Header("Image")]
+    [SerializeField] private Image player1SettingsImage;
+    [SerializeField] private Image player2SettingsImage;
+
+    public void Player1ChangeColor()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        Color newColor = Random.ColorHSV();
+        player1SpriteRenderer.color = newColor;
+        player1SettingsImage.color = newColor;
+
     }
 
-    void Update()
+    public void Player2ChangeColor()
     {
-        if (Input.GetKeyUp(keyColor))
-        {
-            ChangeColor();
-        }
-    }
-    void ChangeColor()
-    {
-        spriteRenderer.material.color = Random.ColorHSV();
+        Color newColor = Random.ColorHSV();
+        player2SpriteRenderer.color = newColor;
+        player2SettingsImage.color = newColor;
     }
 }

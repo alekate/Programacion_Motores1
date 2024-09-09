@@ -26,15 +26,15 @@ public class SpawnManager : MonoBehaviour
         if (totalTime > timeToSpawn && spawned == false)
         {
             // Generar posiciones aleatorias
-            float randomPosX1 = Random.Range(-3f, 3f);
-           // float randomPosY1 = Random.Range(-3f, 3f);
+            float randomPosX1 = Random.Range(-4f, -1f);
+            float randomPosX2 = Random.Range(4f, 1f);
 
-           // float randomPosX2 = Random.Range(-3f, 3f);
-            float randomPosY2 = Random.Range(-3f, 3f);
+            float randomPosY1 = Random.Range(-3f, 3f);
+
 
             // Instanciar los objetos en posiciones aleatorias
-            prefab = Instantiate(obstaclePreFab, new Vector2(randomPosX1 , 0 ), Quaternion.identity);
-            prefab2 = Instantiate(obstaclePreFab2, new Vector2(0 , randomPosY2), Quaternion.identity);
+            prefab = Instantiate(obstaclePreFab, new Vector2(randomPosX1 , randomPosY1), Quaternion.identity);
+            prefab2 = Instantiate(obstaclePreFab2, new Vector2(randomPosX2, randomPosY1), Quaternion.identity);
 
             spawned = true;
             totalTime = 0;
